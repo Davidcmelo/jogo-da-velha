@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage":"https://davidcmelo.github.io/jogo-da-velha/g",
+  "homepage":"https://github.com/Davidcmelo/jogo-da-velha/tree/gh-pages",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
