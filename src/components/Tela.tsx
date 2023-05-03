@@ -19,8 +19,8 @@ export const Tela = ({play, nomeJogador, setNomeJogador}:any) => {
     }
 
     return(
-        <Box className="vida" display='flex' flexDirection='column' justifyContent='center' height='98vh' alignItems='center' >
-                <Typography fontSize='3rem' style={{fontSize:isSmallScreen ? '1.75rem' : '3rem'}}>
+        <Box className="vida" display='flex' flexDirection='column' justifyContent='center'  alignItems='center' style={{height:isSmallScreen ? '80vh' : '97vh'}}>
+                <Typography fontSize='3rem' style={{fontSize:isSmallScreen ? '1.95rem' : '3rem'}}>
                     <p>Digite o nome dos jogadores</p>
                 </Typography>
             <Box style={{display: isSmallScreen? 'flex' : '', flexDirection: isSmallScreen? 'column':'row'}}> 
