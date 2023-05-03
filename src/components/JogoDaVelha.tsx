@@ -67,7 +67,7 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
     };
     
     return (
-        <Box  display='flex' flexDirection='column' justifyContent='center' height='98vh' alignItems='center' color='white' >
+        <Box  className='tudo' display='flex' flexDirection='column' justifyContent='center' height='98vh' alignItems='center' color='white' >
             <Box marginBottom={3}>
                 <Typography variant="h5" fontSize='2.5rem' >
                     Jogo da Velha
