@@ -14,6 +14,7 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
     const exibirInformacoes =vencedor === null
     const [combinacoesVencedoras, setCombinacoesVencedoras] = useState<any[]>([]);
     const isSmallScreen = useMediaQuery('(max-width:756px)');
+    const notScreen = useMediaQuery('(min-width:1000px)');
 
     const checkVencedor = (meuArray: string[]) =>  {
         const combinacoes = [
@@ -69,7 +70,7 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
     };
     
     return (
-        <Box className='tudo' display='flex' flexDirection='row' justifyContent='center'  alignItems='center' color='white' style={{flexDirection:isSmallScreen? 'column': 'row'}} >
+        <Box className='tudo' display='flex' flexDirection='row' justifyContent='center'  alignItems='center' color='white' style={{flexDirection:isSmallScreen? 'column': 'row', height:notScreen?'100%':''}} >
            
             <Box className="aloooooo">
             <Box marginBottom={3}>
@@ -78,7 +79,7 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
                 </Typography>
             </Box >
                 <Box className='borda' border='2px solid'   display='flex' flexDirection='column' justifyContent='center' alignItems='center' borderRadius={5} flexWrap='wrap' style={{height:isSmallScreen? '300px' : '500px', width:isSmallScreen? '300px' : '500px'}}  >
-                    <Box className='caixa' style={{height:isSmallScreen? '261px': '', width:isSmallScreen? '300px': '', }}>
+                    <Box className='caixa' style={{height:isSmallScreen? '261px': '', width:isSmallScreen? '300px': ''}}>
                         {meuArray.map((value,index) =>(
                         <TextField
                             type='button'
@@ -109,7 +110,7 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
                         onClick={()=>setIniciado(false)}
                         variant="contained"
                         color="success"
-                        style={ {marginLeft: '10px', fontSize:isSmallScreen ? '1rem' : '1.75rem', display:'flex', alignItems:'center' } }
+                        style={{ fontSize:isSmallScreen ? '1rem' : '1.75rem', display:'flex', alignItems:'center' } }
                     >Começar Novo Jogo
                     </Button>
                     <Box>
