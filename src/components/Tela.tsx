@@ -3,7 +3,7 @@ import SendIcon from '@mui/icons-material/Send';
 import '../Jogo.css'
 
 export const Tela = ({play, nomeJogador, setNomeJogador}:any) => {
-    const isSmallScreen = useMediaQuery('(max-width:600px)');
+    const isSmallScreen = useMediaQuery('(max-width:756px)');
 
     const handleChange=(event:any,index:number ) => {
         nomeJogador[index]=event.target.value;
@@ -20,7 +20,7 @@ export const Tela = ({play, nomeJogador, setNomeJogador}:any) => {
 
     return(
         <Box className="vida" display='flex' flexDirection='column' justifyContent='center'  alignItems='center' style={{height:isSmallScreen ? '80vh' : '97vh'}}>
-                <Typography fontSize='3rem' style={{fontSize:isSmallScreen ? '1.95rem' : '3rem'}}>
+                <Typography fontSize='3rem' style={{fontSize:isSmallScreen ? '1.95rem' : '3rem', textAlign:isSmallScreen? 'center' : 'center'}}>
                     <p>Digite o nome dos jogadores</p>
                 </Typography>
             <Box style={{display: isSmallScreen? 'flex' : '', flexDirection: isSmallScreen? 'column':'row'}}> 

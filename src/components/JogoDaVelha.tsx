@@ -1,8 +1,9 @@
-import { Box, Button, TextField,Typography } from '@mui/material';
+import { Box, Button, TextField,Typography, useMediaQuery } from '@mui/material';
 import {  useState } from 'react';
 import '../Jogo.css'
 import '@fontsource/roboto';
 import { Placar } from './Placar';
+import { display } from '@mui/system';
 
 export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
     const [jogadorDaVez, setJogadorDaVez] = useState('X');
@@ -12,6 +13,7 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
     const [jogoFinalizado, setJogoFinalizado] = useState(false);
     const exibirInformacoes =vencedor === null
     const [combinacoesVencedoras, setCombinacoesVencedoras] = useState<any[]>([]);
+    const isSmallScreen = useMediaQuery('(max-width:756px)');
 
     const checkVencedor = (meuArray: string[]) =>  {
         const combinacoes = [
@@ -67,63 +69,70 @@ export const JogoDaVelha=({setIniciado,nomeJogador}:any) =>{
     };
     
     return (
-        <Box  className='tudo' display='flex' flexDirection='column' justifyContent='center' height='98vh' alignItems='center' color='white' >
+        <Box className='tudo' display='flex' flexDirection='row' justifyContent='center'  alignItems='center' color='white' style={{flexDirection:isSmallScreen? 'column': 'row'}} >
+           
+            <Box className="aloooooo">
             <Box marginBottom={3}>
-                <Typography variant="h5" fontSize='2.5rem' >
+                <Typography variant="h5" textAlign={'center'} style={{fontSize:isSmallScreen ? '2rem' : '3rem'}}>
                     Jogo da Velha
                 </Typography>
-            </Box>
-            <Box className='box' border='2px solid' height={500} width={500} display='flex' flexDirection='column' justifyContent='center' alignItems='center' borderRadius={5} flexWrap='wrap'>
-                <Box className='caixa'>
-                    {meuArray.map((value,index) =>(
-                    <TextField
-                        type='button'
-                        key={index}
-                        value={value}
-                        onClick={() => handleClick(index)}
-                        disabled={clicked[index] || jogoFinalizado }
-                        sx={{
-                            "& .MuiInputBase-input.Mui-disabled": {
-                            WebkitTextFillColor: "white",
-                        },
-                        }}
-                        InputProps={{
-                            style: { backgroundColor: combinacoesVencedoras.includes(index) ? 'green' : 'rgb(52, 64, 114)', fontSize:'80px',
-                            }
-                        }}
-                    />
-                    ))}
-                </Box>
-                <div className='score'>
-                    <Placar nomeJogador={nomeJogador} vencedor={vencedor} />
-                </div>
-            </Box>
+            </Box >
+                <Box className='borda' border='2px solid'   display='flex' flexDirection='column' justifyContent='center' alignItems='center' borderRadius={5} flexWrap='wrap' style={{height:isSmallScreen? '300px' : '500px', width:isSmallScreen? '300px' : '500px'}}  >
+                    <Box className='caixa' style={{height:isSmallScreen? '261px': '', width:isSmallScreen? '300px': '', }}>
+                        {meuArray.map((value,index) =>(
+                        <TextField
+                            type='button'
+                            key={index}
+                            value={value}
+                            onClick={() => handleClick(index)}
+                            disabled={clicked[index] || jogoFinalizado }
+                            sx={{
+                                "& .MuiInputBase-input.Mui-disabled": {
+                                WebkitTextFillColor: "white",
+                            },
+                            }}
+                            InputProps={{
+                                style: { backgroundColor: combinacoesVencedoras.includes(index) ? 'green' : 'rgb(52, 64, 114)',
+                                fontSize:isSmallScreen? '40px': '80px',
+                                }
+                            }}
+                        />
+                        ))}
+                    </Box>
 
-            <Box paddingTop={7} >
-                <Button variant="contained"  color="success" onClick={resetJogo} style={{fontSize:'1.75rem'}}>
-                    Resetar Jogo
-                </Button>
-                <Button
-                    onClick={()=>setIniciado(false)}
-                    variant="contained"
-                    color="success"
-                    style={ {marginLeft: '10px',fontSize:'1.75rem'} }
-                >Começar Novo Jogo
-                </Button>
-                <Box>
-                    <Typography fontSize='2rem' textAlign='center'>
-                        {exibirInformacoes ? (
-                            <p>
-                                {jogadorDaVez === 'X' ? `Jogador da vez: ${nomeJogador[0]}` : ''}
-                                {jogadorDaVez === 'O' ? `Jogador da vez: ${nomeJogador[1]}` : ''}
-                            </p>
-                            ) : (
-                            <p>
-                                {vencedor === 'X' ? `O jogador ${nomeJogador[0]} venceu!` : ''}
-                                {vencedor === 'O' ? `O jogador ${nomeJogador[1]} venceu!` : ''}
-                            </p>
-                        )}
-                    </Typography>
+                </Box>
+                <Box paddingTop={2} style={{display:isSmallScreen? 'flex' : 'flex', flexDirection:isSmallScreen? 'column' : 'column', alignItems:isSmallScreen? 'center' : 'center' }}  >
+                    <Button variant="contained"  color="success" onClick={resetJogo} style={{fontSize:isSmallScreen ? '1rem' : '1.75rem', display:'flex', alignItems:isSmallScreen?'center': 'center', marginBottom:isSmallScreen? '10px' : '10px'}}>
+                        Resetar Jogo
+                    </Button>
+                    <Button
+                        onClick={()=>setIniciado(false)}
+                        variant="contained"
+                        color="success"
+                        style={ {marginLeft: '10px', fontSize:isSmallScreen ? '1rem' : '1.75rem', display:'flex', alignItems:'center' } }
+                    >Começar Novo Jogo
+                    </Button>
+                    <Box>
+                        <Typography fontSize='1.5rem' textAlign='center'>
+                            {exibirInformacoes ? (
+                                <p>
+                                    {jogadorDaVez === 'X' ? `Jogador da vez: ${nomeJogador[0]}` : ''}
+                                    {jogadorDaVez === 'O' ? `Jogador da vez: ${nomeJogador[1]}` : ''}
+                                </p>
+                                ) : (
+                                <p>
+                                    {vencedor === 'X' ? `O jogador ${nomeJogador[0]} venceu!` : ''}
+                                    {vencedor === 'O' ? `O jogador ${nomeJogador[1]} venceu!` : ''}
+                                </p>
+                            )}
+                        </Typography>
+                    </Box>
+
+                </Box>
+            </Box>
+            <Box className="fundao" style={{paddingLeft:isSmallScreen? '0' : '30px'}}>
+                <Box className='score' >
+                    <Placar nomeJogador={nomeJogador} vencedor={vencedor} />
                 </Box>
             </Box>
         </Box>
